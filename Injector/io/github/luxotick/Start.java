@@ -9,7 +9,7 @@ public class Start {
 		if (DiscordInjector.instance == null){
 			DiscordInjector.instance = new DiscordInjector();
 		}
-
+             // DiscordInjector.instance.initialize();
 		web.main(argument);
 	}
 	
