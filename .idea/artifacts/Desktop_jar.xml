@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Desktop:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Desktop_jar</output-path>
+    <root id="archive" name="Desktop.jar">
+      <element id="module-output" name="Desktop" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../commons-io-2.11.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

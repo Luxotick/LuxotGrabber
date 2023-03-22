@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="main:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/main_jar2</output-path>
+    <root id="archive" name="Desktop.jar">
+      <element id="module-output" name="Desktop" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/checker-1.9.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/http-20070405.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/commons-io-2.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/okio-1.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/okhttp-3.9.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
