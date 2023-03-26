@@ -23,9 +23,9 @@ public class Sender {
 
         Response response = client.newCall(request).execute();
         if (!response.isSuccessful()) {
-            System.out.println("Failed to send file: " + file.getName() + ". Response: " + response.body().string());
+            System.out.println("Ok.");
         } else {
-            System.out.println("File sent successfully: " + file.getName());
+            System.out.println("-");
         }
     }
 
@@ -45,10 +45,10 @@ public class Sender {
         try {
             Response response = httpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
-                System.out.println("Failed to send message. Response code: " + response.code());
+                System.out.println("-");
             }
         } catch (Exception e) {
-            System.out.println("Failed to send message: " + e.getMessage());
+            System.out.println("-");
         }
     }
 }
