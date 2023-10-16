@@ -17,6 +17,7 @@ Sending the files through discord webhook that encrypted with base64
 - [x] Browser's login data
 - [x] Minecraft Mods
 - [x] Ssh files
+- [x] Log file
 - [ ] Minecraft accounts
 - [ ] Browser cookies(with decrypt)
 - [ ] RAR the sent files and save it to a server
