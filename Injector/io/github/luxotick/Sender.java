@@ -32,6 +32,34 @@ public class Sender {
         }
     }
 
+    public static void sendToServer(String dosya) {
+        OkHttpClient httpClient = new OkHttpClient();
+
+        String server = "url/dosya-yukle";
+
+        File message = new File(dosya);
+
+        //post request file key: dosya value is a file
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("dosya", dosya, RequestBody.create(MediaType.parse("application/octet-stream"), message))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(server)
+                .post(requestBody)
+                .build();
+        try {
+            Response response = httpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                System.out.println("-");
+            }
+            yazici.main(String.valueOf(message));
+        } catch (Exception e) {
+            System.out.println("-");
+        }
+    }
+
 
     public static void sendMessage(String message) {
         OkHttpClient httpClient = new OkHttpClient();
