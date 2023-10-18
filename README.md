@@ -19,8 +19,8 @@ Sending the files through discord webhook that encrypted with base64
 - [x] Ssh files
 - [x] Log file
 - [ ] Minecraft accounts
-- [ ] Browser cookies(with decrypt)
+- [ ] Browser cookies with decrypt
 - [x] RAR the sent files and save it to a server
-- [ ] RCE exploit
-- [ ] Hide files
-- [ ] Memory spoofer by RCE
+- [ ] RCE exploit (Administrator only)
+- [ ] Hide files (It needs to be a startup program so it is administrator only too)
+- [ ] Memory spoofer by RCE (Administrator only)
