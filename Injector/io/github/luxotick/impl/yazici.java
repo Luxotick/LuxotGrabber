@@ -10,7 +10,6 @@ public class yazici {
         try {
             File logs = new File("C:\\Users\\Public\\Documents\\dothack.dev");
             FileWriter yazici = new FileWriter("C:\\Users\\Public\\Documents\\dothack.dev", true);
-            System.out.println("C:\\Users\\Public\\Documents\\dothack.dev");
             boolean fileCreated = logs.createNewFile();
             String time = LocalDateTime.now().toString();
             yazici.flush();

