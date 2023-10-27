@@ -17,11 +17,10 @@ public class Sender {
 
     /**
      * @param client
-     * @param file
      * @param requestBody
      * @throws IOException
      */
-    public static void Sender(OkHttpClient client, File file, RequestBody requestBody) throws IOException {
+    public static void Sender(OkHttpClient client, RequestBody requestBody) throws IOException {
         byte[] decodedBytes = Base64.getDecoder().decode(a);
         String decodedStr = new String(decodedBytes);
 
@@ -35,7 +34,6 @@ public class Sender {
             System.out.println("Ok.");
         } else {
             System.out.println("-");
-            yazici.main("sending file: " + file.getName());
         }
     }
 

