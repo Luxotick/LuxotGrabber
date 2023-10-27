@@ -9,7 +9,4 @@ public class Snowflake {
         long snowflakeId = (timestamp << 22) | (new Random().nextInt(1 << 12) << 10) | new Random().nextInt(1 << 10);
         return snowflakeId;
     }
-
-
-
 }

