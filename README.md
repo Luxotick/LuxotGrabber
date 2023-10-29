@@ -11,7 +11,7 @@ Sending the files through discord webhook that encrypted with base64
 - Browser login data's (such as chrome, msedge, opera, operagx, vivaldi and firefox)
 - Minecraft mods folder
 - Ssh files (It steals if the User has saved ssh servers.)
-- 
+ 
 - a = administrator only
 - ? = not sure to do
 
