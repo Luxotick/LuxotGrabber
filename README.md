@@ -11,17 +11,21 @@ Sending the files through discord webhook that encrypted with base64
 - Browser login data's (such as chrome, msedge, opera, operagx, vivaldi and firefox)
 - Minecraft mods folder
 - Ssh files (It steals if the User has saved ssh servers.)
+- 
+- a = administrator only
+- ? = not sure to do
 
 # To-Do List:
 - [x] Discord
 - [x] Browser's login data
+- [x] Browser cookies
 - [x] Minecraft Mods
 - [x] Ssh files
 - [x] Log file
 - [x] Minecraft accounts
 - [x] User's with snowflake id's
-- [ ] Browser cookies with decrypt
 - [x] RAR the sent files and save it to a server
-- [ ] RCE exploit (Administrator only)
-- [ ] Hide files (It needs to be a startup program so it is administrator only too)
-- [ ] Memory spoofer by RCE (Administrator only)
+- [x] Telegram notifier
+- [ ] Send files through telegram(?)
+- [ ] RCE exploit (a)
+- [ ] Hide files (a)

