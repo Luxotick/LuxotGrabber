@@ -26,6 +26,6 @@ Sending the files through discord webhook that encrypted with base64
 - [x] User's with snowflake id's
 - [x] RAR the sent files and save it to a server
 - [x] Telegram notifier
-- [ ] Send files through telegram(?)
+- [x] Send files through telegram(?)
 - [ ] RCE exploit (a)
 - [ ] Hide files (a)
