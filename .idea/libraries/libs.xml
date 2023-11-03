@@ -6,8 +6,12 @@
       <root url="jar://$PROJECT_DIR$/libs/okhttp-3.9.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/checker-1.9.11.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/http-20070405.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.10.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/com.sun.jna.platform-5.8.0.v20210406-1004.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" />
   </library>
 </component>
