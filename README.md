@@ -29,3 +29,6 @@ Sending the files through discord webhook that encrypted with base64
 - [x] Send files through telegram(?)
 - [ ] RCE exploit (a)
 - [ ] Hide files (a)
+
+# Special thanks
+- The java injector for pirate stealer is written by itzgonza, here is the repository: https://github.com/itzgonza/Pirate-Stealer
