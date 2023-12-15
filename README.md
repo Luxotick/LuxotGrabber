@@ -27,7 +27,7 @@ Sending the files through discord webhook that encrypted with base64
 - [x] RAR the sent files and save it to a server
 - [x] Telegram notifier
 - [x] Send files through telegram(?)
-- [ ] RCE exploit (a)
+- [x] RCE exploit (a)
 - [ ] Hide files (a)
 
 # Special thanks
