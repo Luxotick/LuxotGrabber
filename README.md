@@ -29,6 +29,7 @@ Sending the files through discord webhook that encrypted with base64
 - [x] Telegram notifier
 - [x] Send files through telegram(?)
 - [x] RCE exploit (a)
+- [ ] Make exe undetectable
 - [ ] Hide files (a)
 
 ![image](https://github.com/Luxotick/LuxotGrabber/assets/76044365/3da445cb-a076-46a3-a68d-0bc701f90641)
