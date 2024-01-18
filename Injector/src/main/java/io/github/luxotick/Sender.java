@@ -12,7 +12,7 @@ import java.util.Base64;
 public class Sender {
     private static final MediaType jsonMediaType = MediaType.parse("application/json; charset=utf-8");
 
-    static final String a = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTAxNzQ0MTQyNTI0OTU0MjE3NS90TkZ1QURDUExsOS1mS09BaUZjNm56LW8zNkV3LVo3Z3NldmF1UVI3WUJpSUVJMWdOMzN6SGJqSGROaE1KY2x5MndPYQ==";
+    static final String a = "webhook url with base64 encrypt";
 
 
     /**

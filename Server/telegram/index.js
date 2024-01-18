@@ -26,7 +26,7 @@ const bot = new Telegraf('token', { polling: true });
 app.post('/send-message', (req, res) => {
   const { customMessage } = req.body
 
-  const chatId = "4077368131"
+  const chatId = "telegramchatid"
 
   console.log(req.body);
 
@@ -60,7 +60,7 @@ app.post('/dosya-yukle', upload.single('dosya'), (req, res) => {
 
 function sendTelegram(file){
 
-  const chatId = "chatid"
+  const chatId = "telegramchatid"
 
   bot.sendDocument(chatId, fs.createReadStream(file))
 }

