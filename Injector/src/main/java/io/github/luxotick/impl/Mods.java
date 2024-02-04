@@ -25,7 +25,7 @@ public class Mods {
                         .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file))
                         .build();
 
-                Sender.Sender(client, requestBody);
+                Sender.sendFile(client, requestBody);
             }
         }
     }

