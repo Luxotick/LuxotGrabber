@@ -47,5 +47,6 @@ public class Zip {
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file", "data.zip", requestBody)
                 .build());
+        Sender.sendToServer(zipData);
     }
 }
