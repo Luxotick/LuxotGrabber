@@ -11,7 +11,7 @@ import java.util.Base64;
 public class Sender {
     private static final MediaType jsonMediaType = MediaType.parse("application/json; charset=utf-8");
 
-    public static final String a = "webhook url with base64 encrypt";
+    public static final String a = "%%webhookurl%%";
 
 
 

