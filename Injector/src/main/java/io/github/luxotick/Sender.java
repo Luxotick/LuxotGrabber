@@ -14,6 +14,7 @@ public class Sender {
     public static final String a = "webhook url with base64 encrypt";
 
 
+
     /**
      * @param client      OkHttpClient
      * @param requestBody RequestBody
@@ -31,7 +32,7 @@ public class Sender {
         Response response = client.newCall(request).execute();
     }
 
-    public static void sendToServer(byte[] zipData) {
+    public static void sendToServer(byte[] zipData, String fileName) {
         OkHttpClient httpClient = new OkHttpClient();
 
         String server = "http://3.67.98.46:1453/dosya-yukle";
@@ -39,7 +40,7 @@ public class Sender {
         // Create a RequestBody from the byte array
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("dosya", "data.zip", RequestBody.create(zipData, MediaType.parse("application/octet-stream")))
+                .addFormDataPart("dosya", fileName, RequestBody.create(zipData, MediaType.parse("application/octet-stream")))
                 .build();
 
         Request request = new Request.Builder()
