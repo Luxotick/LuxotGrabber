@@ -2,8 +2,6 @@
 
 <p align="center"> Educational purposes only, I learned a lot from this project and still learning too. </p>
 <p align="center"> Making project public and taking a break for a while if you want to help the project you can add me on discord: Luxotick </p>
-<p align="center"> https://t.me/luxotgrabber </p>
-<p align="center"> https://discord.gg/SqMkqwdbez </p>
 
 <p align="center"> <i> Made by Luxotick </i> </p>
 
