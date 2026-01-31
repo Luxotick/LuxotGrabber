@@ -3,7 +3,6 @@ package io.github.luxotick.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.github.luxotick.impl.cookies.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

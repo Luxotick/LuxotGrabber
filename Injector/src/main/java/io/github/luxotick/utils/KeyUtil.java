@@ -20,7 +20,6 @@ public class KeyUtil {
             return Crypt32Util.cryptUnprotectData(encryptedKeyBytes);
         }
         catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
