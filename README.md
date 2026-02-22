@@ -1,26 +1,22 @@
 <h1 align="center"> LuxotGrabber </h1>
 
-<p align="center"><b>⚠️ ARCHIVED PROJECT ⚠️</b></p>
-<p align="center">
-This project has been <b>archived</b>.  
-It is no longer maintained, updated, or supported.
-</p>
+> ⚠️ **IMPORTANT NOTICE** ⚠️  
+>  
+> This repository is **ARCHIVED** and kept **for educational and reference purposes only**.  
+> It is no longer maintained, updated, or supported in any way.  
+>  
+> **The active and updated version of this project is distributed exclusively via the official domain below:**  
+>  
+> 🔗 **https://sluttiest.space**  
+>  
+> Any other sources, mirrors, or reuploads should be considered **unofficial and potentially unsafe**.  
+>  
+> By accessing or using any version of this project, you acknowledge that you are doing so  
+> **at your own risk and responsibility**.
+>
+>
+>  contact me on discord : **luxotick**
 
-<p align="center">
-Educational purposes only. I learned a lot from this project.
-</p>
-
-<p align="center">
-I am taking a break and the repository is now public for reference/learning purposes only.
-</p>
-
-<p align="center">
-Discord: Luxotick  
-</p>
-
-<p align="center">
-<i>Made by Me</i>
-</p>
 
 ---
 
